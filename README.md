@@ -1,59 +1,35 @@
-splunk-sdk-python search_commands_app example
+splunk-search-tools-app
 =============================================
 
-This app provides three examples of custom search commands; one of each of the
-base types:
+This app extends splunk search with extra commands.
+
 
  Command      | Type       | Description
 :------------ |:-----------|:----------------------------------------------------
- simulate     | Generating | Generates a sequence of events drawn from a csv file using repeated random sampling with replacement
- sum          | Reporting  | Adds all the numbers in a set of fields.
- countmatches | Streaming  | Counts the number of non-overlapping matches to a regular expression in a set of fields.
+ encode       | Generating | Encodes search fields on a variety of algos <[base64]|urlsafe_base64|md5|dsa|any hashlib algo>
+ decode       | Reporting  | Decodes search fields outputting results to <field>+suffix.
 
-The app is tested on Splunk 5 and 6. Here is its manifest:
+The app is tested on 6. Here is its manifest:
 
-```
-├── bin
-│   ├── splunklib
-│   │   └── searchcommands ....... splunklib.searchcommands module
-│   ├── simulate.py .............. SimulateCommand implementation
-│   ├── sum.py ................... SumCommand implementation
-│   └── countmatches.py .......... CountMatchesCommand implementation
-├── default
-│   ├── data
-│   │   └── ui
-│   │       └── nav
-│   │           └── default.xml ..
-│   ├── app.conf ................. Used by Splunk to maintain app state [1]
-│   ├── commands.conf ............ Search command configuration [2]
-│   ├── logging.conf ............. Python logging[3] configuration in ConfigParser[4] format
-│   └── searchbnf.conf ........... Search assistant configuration [5]
-└── metadata
-    └── local.meta ............... Permits the search assistant to use searchbnf.conf[6]
-```
 **References**  
-[1] [app.conf](http://docs.splunk.com/Documentation/Splunk/latest/Admin/Appconf app.conf)  
-[2] [commands.conf](http://docs.splunk.com/Documentation/Splunk/latest/Admin/Commandsconf)  
-[3] [Python Logging HOWTO](http://docs.python.org/2/howto/logging.html)  
-[4] [ConfigParser—Configuration file parser](http://docs.python.org/2/library/configparser.html)
-[5] [searchbnf.conf](http://docs.splunk.com/Documentation/Splunk/latest/admin/Searchbnfconf)
-[6] [Set permissions in the file system](http://goo.gl/1oDT7r)
+[1] [splunk-sdk-python](http://dev.splunk.com/view/python-sdk/SP-CAAAEBB) 
+[2] [app.conf](http://docs.splunk.com/Documentation/Splunk/latest/Admin/Appconf app.conf)  
+[3] [commands.conf](http://docs.splunk.com/Documentation/Splunk/latest/Admin/Commandsconf)  
+[4] [Python Logging HOWTO](http://docs.python.org/2/howto/logging.html)  
+[5] [ConfigParser—Configuration file parser](http://docs.python.org/2/library/configparser.html)
+[6] [searchbnf.conf](http://docs.splunk.com/Documentation/Splunk/latest/admin/Searchbnfconf)
+[7] [Set permissions in the file system](http://goo.gl/1oDT7r)
 
 ## Installation
 
-+ Install the app by copying the `searchcommands_app` directory to `$SPLUNK_HOME/etc/apps/searchcommands_app`.
++ Package the app by running the `package.sh`.
 
-+ Recursively copy `splunklib` to `$SPLUNK_HOME/etc/apps/searchcommands_app/bin`.
++ Install the app by expanding the resulting `target/splunk-search-tools-app.tgz` into `$SPLUNK_HOME/etc/apps/`.
 
 + (Re)start Splunk so that the app is recognized.
 
-## Dashboards and Searches
++ you can also use the Splunk web interface to install `splunk-search-tools-app.tgz`  
 
-+ TODO: Add saved search(es) for each example
-
-### Searches
-
-+ TODO: Describe saved searches
 
 ## License
 
