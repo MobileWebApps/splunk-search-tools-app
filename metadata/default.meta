@@ -12,5 +12,12 @@ access = read : [ * ], write : [ * ]
 export = system
 owner = nobody
 
+
+[commands/deviceatlas]
+access = read : [ * ], write : [ * ]
+export = system
+owner = nobody
+
+
 [searchbnf]
 export = system
